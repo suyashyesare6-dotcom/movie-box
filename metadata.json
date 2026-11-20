@@ -1,0 +1,6 @@
+{
+  "name": "JARVIS",
+  "description": "Personal Marathi AI assistant with Tony Stark JARVIS personality, spoken voice mode, housekeeping, study mode, and security guidance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

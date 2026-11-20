@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">JARVIS</string>
+    <string name="jarvis_tagline">वैयक्तिक मराठी AI सहाय्यक</string>
+    <string name="auth_title">सिस्टम अनलॉक करा, बॉस</string>
+    <string name="auth_subtitle">तुमची कामे, स्टडी नोट्स, आठवणी आणि डेली ब्रीफिंग सुरक्षितपणे सिंक करण्यासाठी Google ने साइन इन करा.</string>
+    <string name="sign_in_google">Google ने साइन इन करा</string>
+    <string name="nav_jarvis">JARVIS</string>
+    <string name="nav_dashboard">डॅशबोर्ड</string>
+    <string name="nav_study">अभ्यास</string>
+    <string name="nav_security">सुरक्षा</string>
+    <string name="nav_memory">मेमरी</string>
+    <string name="dashboard_title">Today\'s Tasks &amp; Bills</string>
+    <string name="dashboard_subtitle">आजची कामे व बिले • Housekeeping, Study &amp; Security</string>
+    <string name="mode_general">बॉस मोड</string>
+    <string name="mode_gossip">गप्पा</string>
+    <string name="mode_study">स्टडी</string>
+    <string name="mode_security">सिक्युरिटी</string>
+    <string name="voice_hint">बॉस, बोला किंवा टाइप करा…</string>
+    <string name="listening_now">ऐकतोय बॉस… आता बोला</string>
+    <string name="thinking_now">विचार करतोय बॉस…</string>
+    <string name="speaking_now">बोलतोय बॉस…</string>
+    <string name="mic_permission_needed">व्हॉइससाठी मायक्रोफोन परवानगी आवश्यक आहे, बॉस.</string>
+    <string name="daily_briefing_title">डेली ब्रीफिंग</string>
+    <string name="daily_briefing_cta">आजचं ब्रीफिंग ऐका</string>
+    <string name="sign_out">साइन आउट</string>
+</resources>

@@ -1,0 +1,129 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "JARVIS assistant preferences and user settings.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Authenticated user UID." },
+        "preferredTitle": { "type": "string", "description": "How JARVIS addresses the user (e.g. Boss)." },
+        "autoSpeakEnabled": { "type": "boolean", "description": "Whether JARVIS speaks replies aloud automatically." },
+        "speechRate": { "type": "number", "description": "TTS playback speed multiplier." },
+        "activeMode": {
+          "type": "string",
+          "enum": ["GENERAL", "GOSSIP", "STUDY", "SECURITY"],
+          "description": "Active assistant mode."
+        },
+        "preferredLanguage": {
+          "type": "string",
+          "enum": ["AUTO", "MARATHI", "ENGLISH", "HINDI", "SPANISH", "FRENCH", "GERMAN", "JAPANESE"],
+          "description": "Preferred AI response and voice language."
+        },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp of creation." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp of last update." }
+      },
+      "required": ["userId", "preferredTitle", "autoSpeakEnabled", "speechRate", "activeMode", "createdAt", "updatedAt"]
+    },
+    "MemoryItem": {
+      "title": "MemoryItem",
+      "description": "Saved user interest, preference, or conversation memory for Gossip Mode.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "topic": { "type": "string" },
+        "detail": { "type": "string" },
+        "category": { "type": "string", "enum": ["INTEREST", "CONVERSATION", "PREFERENCE", "GOAL"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "topic", "detail", "category", "createdAt", "updatedAt"]
+    },
+    "HousekeepingItem": {
+      "title": "HousekeepingItem",
+      "description": "Task, reminder, shopping list item, bill, or household routine.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "notes": { "type": "string" },
+        "category": { "type": "string", "enum": ["TASK", "SHOPPING", "BILL", "ROUTINE"] },
+        "domain": { "type": "string", "enum": ["HOUSEKEEPING", "STUDY", "SECURITY"] },
+        "scheduleLabel": { "type": "string" },
+        "priority": { "type": "string", "enum": ["LOW", "MEDIUM", "HIGH"] },
+        "completed": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "notes", "category", "scheduleLabel", "priority", "completed", "createdAt", "updatedAt"]
+    },
+    "StudyNote": {
+      "title": "StudyNote",
+      "description": "Study note, summary, revision plan, exam timetable, or quiz log.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "subject": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "noteType": { "type": "string", "enum": ["SUMMARY", "TIMETABLE", "REVISION", "QUIZ_LOG"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "subject", "title", "content", "noteType", "createdAt", "updatedAt"]
+    },
+    "SecurityCheck": {
+      "title": "SecurityCheck",
+      "description": "Defensive personal security readiness check (2FA, password manager, updates, backups).",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "guidance": { "type": "string" },
+        "category": { "type": "string", "enum": ["AUTH_2FA", "PASSWORDS", "UPDATES", "BACKUPS", "NETWORK"] },
+        "completed": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "guidance", "category", "completed", "createdAt", "updatedAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Persistent conversation message between user and JARVIS.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "sender": { "type": "string", "enum": ["USER", "JARVIS"] },
+        "mode": { "type": "string", "enum": ["GENERAL", "GOSSIP", "STUDY", "SECURITY"] },
+        "text": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "sender", "mode", "text", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "User preferences and JARVIS voice/mode settings."
+    },
+    "/users/{userId}/memories/{memoryId}": {
+      "schema": { "$ref": "#/entities/MemoryItem" },
+      "description": "User interests and conversation memories."
+    },
+    "/users/{userId}/housekeeping/{itemId}": {
+      "schema": { "$ref": "#/entities/HousekeepingItem" },
+      "description": "Daily tasks, shopping items, bills, and routines."
+    },
+    "/users/{userId}/studyNotes/{noteId}": {
+      "schema": { "$ref": "#/entities/StudyNote" },
+      "description": "Study notes, summaries, revision plans, and exam timetables."
+    },
+    "/users/{userId}/securityChecks/{checkId}": {
+      "schema": { "$ref": "#/entities/SecurityCheck" },
+      "description": "Personal defensive security hygiene checklist."
+    },
+    "/users/{userId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/ChatMessage" },
+      "description": "Persistent JARVIS conversation log."
+    }
+  }
+}
